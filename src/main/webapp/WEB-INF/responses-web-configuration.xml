@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="mediaTypes">
+            <map>
+                <entry key="html" value="text/html"/>
+                <entry key="json" value="application/json"/>
+            </map>
+        </property>
+        <property name="viewResolvers">
+            <list>
+                <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+                <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+                    <property name="prefix" value="/WEB-INF/views/"/>
+                    <property name="suffix" value=".jsp"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <bean name="jsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
+
+    <bean class="com.github.jdubois.responses.web.instance.exception.ResponsesExceptionResolver">
+        <property name="exceptionMappings">
+            <map>
+                <entry key="org.hibernate.validator.InvalidStateException" value="exception/validation-exception"/>
+                <entry key="com.github.jdubois.responses.web.instance.exception.QuestionNotFoundException"
+                       value="exception/question-not-found-exception"/>
+                <entry key="com.github.jdubois.responses.service.exception.ResponsesSecurityException"
+                       value="exception/security-exception"/>
+                <entry key="com.github.jdubois.responses.service.exception.InstanceException" value="exception/instance-exception"/>
+                <entry key="java.lang.Exception" value="exception/exception"/>
+                <entry key="java.lang.RuntimeException" value="exception/exception"/>
+            </map>
+        </property>
+        <property name="defaultErrorView" value="exception/exception"/>
+    </bean>
+</beans>

@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /i/developpement/top-questions/
+Disallow: /i/developpement/new-questions/
+Disallow: /i/developpement/unanswered/

@@ -1,0 +1,183 @@
+<ehcache>
+
+    <diskStore path="java.io.tmpdir"/>
+
+    <defaultCache
+            maxElementsInMemory="10"
+            eternal="false"
+            timeToIdleSeconds="5"
+            timeToLiveSeconds="10"
+            overflowToDisk="true"
+            />
+
+    <!-- Web cache -->
+    <cache name="web-cache"
+           maxElementsInMemory="1000"
+           eternal="false"
+           timeToLiveSeconds="120"
+           overflowToDisk="false">
+    </cache>
+
+    <!-- hibernate cache -->
+    <cache name="com.github.jdubois.responses.model.Company"
+           maxElementsInMemory="100"
+           eternal="true"
+            />
+
+    <cache name="com.github.jdubois.responses.model.Instance"
+           maxElementsInMemory="200"
+           eternal="true"
+            />
+
+    <cache name="com.github.jdubois.responses.model.User"
+           maxElementsInMemory="1000"
+           eternal="false"
+           timeToIdleSeconds="108000"
+            />
+
+    <cache name="com.github.jdubois.responses.model.User.roles"
+           maxElementsInMemory="2000"
+           eternal="false"
+           timeToIdleSeconds="108000"
+            />
+
+    <cache name="com.github.jdubois.responses.model.Role"
+           maxElementsInMemory="20"
+           eternal="false"
+           timeToIdleSeconds="108000"
+            />
+
+    <cache name="com.github.jdubois.responses.model.User.instances"
+           maxElementsInMemory="3000"
+           eternal="false"
+           timeToIdleSeconds="108000"
+            />
+
+    <cache name="com.github.jdubois.responses.model.User.ignoredTags"
+           maxElementsInMemory="5000"
+           eternal="false"
+           timeToIdleSeconds="108000"
+            />
+
+    <cache name="com.github.jdubois.responses.model.User.favoriteTags"
+           maxElementsInMemory="5000"
+           eternal="false"
+           timeToIdleSeconds="108000"
+            />
+
+    <cache name="com.github.jdubois.responses.model.User.expertizes"
+           maxElementsInMemory="10000"
+           eternal="false"
+           timeToIdleSeconds="108000"
+            />
+
+    <cache name="com.github.jdubois.responses.model.Expertize"
+           maxElementsInMemory="10000"
+           eternal="false"
+           timeToIdleSeconds="108000"
+            />
+
+    <cache name="com.github.jdubois.responses.model.Question"
+           maxElementsInMemory="10000"
+           eternal="false"
+           timeToIdleSeconds="108000"
+            />
+
+    <cache name="com.github.jdubois.responses.model.Question.questionVotes"
+           maxElementsInMemory="20000"
+           eternal="false"
+           timeToIdleSeconds="108000"
+            />
+
+    <cache name="com.github.jdubois.responses.model.Question.watchs"
+           maxElementsInMemory="30000"
+           eternal="false"
+           timeToIdleSeconds="108000"
+            />
+
+    <cache name="com.github.jdubois.responses.model.Question.workflows"
+           maxElementsInMemory="5000"
+           eternal="false"
+           timeToIdleSeconds="108000"
+            />
+
+    <cache name="com.github.jdubois.responses.model.Question.tags"
+           maxElementsInMemory="10000"
+           eternal="false"
+           timeToIdleSeconds="108000"
+            />
+
+    <cache name="com.github.jdubois.responses.model.Question.answers"
+           maxElementsInMemory="50000"
+           eternal="false"
+           timeToIdleSeconds="108000"
+            />
+
+    <cache name="com.github.jdubois.responses.model.QuestionComment"
+           maxElementsInMemory="20000"
+           eternal="false"
+           timeToIdleSeconds="108000"
+            />
+
+    <cache name="com.github.jdubois.responses.model.Question.questionComments"
+           maxElementsInMemory="20000"
+           eternal="false"
+           timeToIdleSeconds="108000"
+            />
+
+    <cache name="com.github.jdubois.responses.model.QuestionVote"
+           maxElementsInMemory="10000"
+           eternal="false"
+           timeToIdleSeconds="108000"
+            />
+
+    <cache name="com.github.jdubois.responses.model.Watch"
+           maxElementsInMemory="30000"
+           eternal="false"
+           timeToIdleSeconds="108000"
+            />
+
+    <cache name="com.github.jdubois.responses.model.Workflow"
+           maxElementsInMemory="5000"
+           eternal="false"
+           timeToIdleSeconds="108000"
+            />
+
+    <cache name="com.github.jdubois.responses.model.Answer"
+           maxElementsInMemory="50000"
+           eternal="false"
+           timeToIdleSeconds="108000"
+            />
+
+    <cache name="com.github.jdubois.responses.model.AnswerVote"
+           maxElementsInMemory="100000"
+           eternal="false"
+           timeToIdleSeconds="108000"
+            />
+
+    <cache name="com.github.jdubois.responses.model.AnswerComment"
+           maxElementsInMemory="100000"
+           eternal="false"
+           timeToIdleSeconds="108000"
+            />
+
+    <cache name="com.github.jdubois.responses.model.Answer.answerVotes"
+           maxElementsInMemory="100000"
+           eternal="false"
+           timeToIdleSeconds="108000"
+            />
+
+    <cache name="com.github.jdubois.responses.model.Answer.answerComments"
+           maxElementsInMemory="100000"
+           eternal="false"
+           timeToIdleSeconds="108000"
+            />
+
+    <cache name="com.github.jdubois.responses.model.Tag"
+           maxElementsInMemory="10000"
+           eternal="false"
+           timeToIdleSeconds="108000"
+            />
+
+</ehcache>
+

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+                                 http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                                 http://www.springframework.org/schema/security
+                                 http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+    <http pattern="/static/**" security="none"/>
+
+    <http>
+        <anonymous key="anonymous-security"/>
+        <intercept-url pattern="/i/*/account/**" access="ROLE_USER"/>
+        <intercept-url pattern="/i/*/admin/**" access="ROLE_ADMIN"/>
+        <intercept-url pattern="/i/*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <intercept-url pattern="/su/**" access="ROLE_SU"/>
+        <intercept-url pattern="/support/*" access="ROLE_SUPPORT,ROLE_MODERATOR"/>
+
+        <form-login login-page="/"
+                    login-processing-url="/login"
+                    authentication-failure-url="/authentication/error"
+                />
+
+        <logout logout-url="/logout"/>
+        <remember-me data-source-ref="dataSource"/>
+    </http>
+
+    <beans:bean id="simpleUrlAuthenticationSuccessHandler"
+                class="org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler">
+        <beans:property name="useReferer" value="true"/>
+    </beans:bean>
+
+    <authentication-manager>
+        <authentication-provider user-service-ref="userDetailsService"/>
+    </authentication-manager>
+
+    <global-method-security secured-annotations="enabled"/>
+
+</beans:beans>

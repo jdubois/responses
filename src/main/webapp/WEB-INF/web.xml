@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="
+			http://java.sun.com/xml/ns/j2ee
+			http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+         version="2.4">
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:META-INF/spring/application-config.xml</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>instance</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>instance</servlet-name>
+        <url-pattern>/i/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>authentication</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>authentication</servlet-name>
+        <url-pattern>/authentication/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>support</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>3</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>support</servlet-name>
+        <url-pattern>/support/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>about</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>4</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>about</servlet-name>
+        <url-pattern>/about/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>su</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>5</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>su</servlet-name>
+        <url-pattern>/su/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>rss</servlet-name>
+        <servlet-class>com.github.jdubois.responses.web.rss.RssServlet</servlet-class>
+        <load-on-startup>6</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>rss</servlet-name>
+        <url-pattern>/rss</url-pattern>
+    </servlet-mapping>
+
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    <filter>
+        <filter-name>Monitor</filter-name>
+        <filter-class>com.github.jdubois.responses.web.filter.MonitorFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>Monitor</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>GZipFilter</filter-name>
+        <filter-class>org.mortbay.servlet.GzipFilter</filter-class>
+        <init-param>
+            <param-name>mimeTypes</param-name>
+            <param-value>text/html</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>GZipFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>SimpleCachingHeadersPageCachingFilter</filter-name>
+        <filter-class>net.sf.ehcache.constructs.web.filter.SimpleCachingHeadersPageCachingFilter
+        </filter-class>
+        <init-param>
+            <param-name>suppressStackTraces</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <init-param>
+            <param-name>cacheName</param-name>
+            <param-value>web-cache</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>SimpleCachingHeadersPageCachingFilter</filter-name>
+        <url-pattern>/rss</url-pattern>
+    </filter-mapping>
+
+
+    <!--    <filter>
+        <filter-name>StaticResources</filter-name>
+        <filter-class>com.github.jdubois.responses.web.filter.StaticResourcesFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>StaticResources</filter-name>
+        <url-pattern>/static/jquery/*</url-pattern>
+    </filter-mapping>-->
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    <error-page>
+		<exception-type>java.lang.Exception</exception-type>
+		<location>/error/500.jsp</location>
+	</error-page>
+    <error-page>
+		<error-code>404</error-code>
+		<location>/error/404.jsp</location>
+	</error-page>
+
+</web-app>

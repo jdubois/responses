@@ -1,0 +1,11 @@
+data
+*.iml
+responses.iml
+responses.ipr
+responses.iws
+.classpath
+.project
+.settings
+target
+.merge_file*
+.DS_Store
